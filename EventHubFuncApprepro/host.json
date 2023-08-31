@@ -1,0 +1,37 @@
+{
+  "version": "2.0",
+  "extensions": {
+    // https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs?tabs=in-process%2Cextensionv5&pivots=programming-language-csharp
+    "eventHubs": {
+      "maxEventBatchSize": 100,
+      "minEventBatchSize": 25,
+      "maxWaitTime": "00:03:00",
+      "batchCheckpointFrequency": 1,
+      "prefetchCount": 600,
+      "initialOffsetOptions": {
+        "type": "fromStart",
+        "enqueuedTimeUtc": ""
+      },
+      "clientRetryOptions": {
+        "mode": "exponential",
+        "tryTimeout": "00:01:00",
+        "delay": "00:00:00.20",
+        "maximumDelay": "00:00:01",
+        "maximumRetries": 15
+      }
+    }
+  },
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      }
+    },
+    "logLevel": {
+      "Default": "Information",
+      "Azure.Core": "Warning",
+      "Azure.Messaging.EventHubs": "Warning"
+    }
+  }
+}
